@@ -15,23 +15,36 @@ function onThink()
 	npcHandler:onThink()
 end
 
---local voices = { {text = 'Passages to Tibia, Folda and Vega.'} }
---npcHandler:addModule(VoiceModule:new(voices))
+local function creatureSayCallback(cid, type, msg)
+	if not npcHandler:isFocused(cid) then
+		return false
+	end
 
--- Travel
---local function addTravelKeyword(keyword, text, cost, destination)
---	local travelKeyword = keywordHandler:addKeyword({keyword}, StdModule.say, {npcHandler = npcHandler, text = 'Do you want to sail ' .. text, cost = cost})
-	--	travelKeyword:addChildKeyword({'yes'}, StdModule.travel, {npcHandler = npcHandler, premium = false, cost = cost, destination = destination})
-	--	travelKeyword:addChildKeyword({'no'}, StdModule.say, {npcHandler = npcHandler, text = 'We would like to serve you some time.', reset = true})
---end
+	local player = Player(cid)
 
---addTravelKeyword('tibia', 'back to Tibia?', 0, Position(32235, 31674, 7))
---addTravelKeyword('vega', 'to Vega for |TRAVELCOST|?', 10, Position(32020, 31692, 7))
---addTravelKeyword('folda', 'to Folda for |TRAVELCOST|?', 10, Position(32046, 31578, 7))
+	if msgcontains(msg, "help") then
+		npcHandler:say("Yeah yeah, you can help me actually. You know, I feel some bad vibes coming out of the earth, recently. I think there's something wrong with the creatures of the deep. Care to join me?", cid)
+		npcHandler.topic[cid] = 1;
+	elseif msgcontains(msg, "yes") then
+		if npcHandler.topic[cid] == 1 then
+			npcHandler:say({
+				"Great, great. There is something going on, you know? I can feel it in my bones. There really are some bad spirits down there. ...",
+				"What I know is they vibrate when evil is near. Yeah, vibration man. ...",
+				"They also let evil glow in a deep red. Glowing red stuff. So next time you go down there, just take one with you and when you find evil spirits - Catch them with the net. ...",
+				"They will vanish in an instant. But - you will have to take care that all bad spirits in the near vicinity vanish almost instantaneously or they will regenerate. ...",
+				"So you might need some help down there, my friend. Ready to do this?",
+			}, cid)
+			npcHandler.topic[cid] = 2
+		elseif npcHandler.topic[cid] == 2 then
+			player:addItem(15433, 1)
+			npcHandler:say("Good, I hope this will help you keeping the spirits away.", cid)
+			npcHandler.topic[cid] = 0
+		end
+	end
 
--- Basic
-keywordHandler:addKeyword({'help'}, StdModule.say, {npcHandler = npcHandler, text = 'Find the Golden Anchor and click there, after talk with Navigator.'})
---keywordHandler:addKeyword({'job'}, StdModule.say, {npcHandler = npcHandler, text = 'I am the captain of this ship.'})
---keywordHandler:addKeyword({'captain'}, StdModule.say, {npcHandler = npcHandler, text = 'I am the captain of this ship.'})
 
+	return true
+end
+
+npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
 npcHandler:addModule(FocusModule:new())
