@@ -40,7 +40,7 @@ local function creatureSayCallback(cid, type, msg)
 		elseif player:getStorageValue(72326) == 3 then
 			selfSay("Have you got anything for me today?", cid)
 			npcHandler.topic[cid] = 3
-		elseif player:getStorageValue(72326) == 4 and player:removeItem(15434, 1) then
+		elseif player:getStorageValue(72326) == 4 then
 			selfSay("Have you got anything... what? You want what? A reward? HAHAHAHAAAA!! ...", cid)
 			selfSay("No I'm just teasing you. I'm really happy about my collection now. ...", cid)
 			npcHandler:say("Well, I found some kind of weapon a long time ago. I believe it may be especially helpful underwater as it is from the deep folk. In any case it is of more use for you than it would be for me.", cid)
@@ -50,7 +50,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 0
 		end
 	elseif msgcontains(msg, "yes") then
-		if npcHandler.topic[cid] == 1 then
+		if npcHandler.topic[cid] == 1 and player:removeItem(15434, 1) then
 			selfSay("Great! Let me see. Amazing! I will take this, thank you!", cid)
 			player:setStorageValue(72326, 2)
 			npcHandler.topic[cid] = 0
