@@ -1,24 +1,17 @@
-local config = {
-	teleportId = 1387,
-	days = {
-		["Saturday"] = {Position(33649, 31261, 11), Position(33647, 31254, 11)}, -- tanjis
-		["Friday"] = {Position(33558, 31282, 11), Position(33545, 31263, 11)}, -- jaul
-		["Sunday"] = {Position(33438, 31248, 11), Position(33419, 31255, 11)}, -- obujos
-	}
-}
+local grayIslandBosses = GlobalEvent("gray island bosses")
 
-local gray = GlobalEvent("gray island bosses")
-function gray.onStartup()
-	local day = config.days[os.date("%A")]
-	if day then
-		local item = Game.createItem(config.teleportId, 1, day[1])
-		if not item:isTeleport() then
-			item:remove()
-			return false
-		end
-		item:setDestination(day[2])
+function grayIslandBosses.onStartup()
+	local chance = math.random(1, 3);
+
+	if chance == 3 then
+		Game.createMonster('Tanjis', Position(33642, 31237, 11), true, true)
+	elseif chance == 2 then
+		Game.createMonster('Obujos', Position(33421, 31263, 11), true, true)
+	elseif chance == 1 then
+		Game.createMonster('Jaul', Position(33543, 31263, 11), true, true)
 	end
+
 	return true
 end
 
-gray:register()
+grayIslandBosses:register()
