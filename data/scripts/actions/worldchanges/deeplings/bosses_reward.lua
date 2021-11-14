@@ -36,7 +36,7 @@ local rewards = {
 local bossesReward = Action()
 
 function bossesReward.onUse(player, item, fromPosition, target, toPosition, isHotkey)
-    if item.uid > 25609 and item.uid < 25613 then
+  if item.uid >= 9302 and item.uid <= 9304 then
 		local reward = rewards[item.uid]
 		if not reward then
 			return true
@@ -46,7 +46,6 @@ function bossesReward.onUse(player, item, fromPosition, target, toPosition, isHo
 			player:sendTextMessage(MESSAGE_EVENT_ADVANCE, reward.bossName .. ' defends his belongings and will not let you open his chest.')
 			return true
 		end
-
 
 		for i = 1, #reward.items do
 			local items = reward.items[i]
