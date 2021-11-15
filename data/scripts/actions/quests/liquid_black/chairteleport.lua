@@ -5,8 +5,8 @@ local chairteleport = Action()
 function chairteleport.onUse(player, item, frompos, item2, topos)
 
     if player:getStorageValue(Storage.LiquidBlackQuest.Visitor) == 2 then
-		player:teleportTo(teleportplayer)
-        player:sendTextMessage(MESSAGE_EVENT_ADVANCE,"Teleport.")
+				player:teleportTo(teleportplayer)
+        player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "At least the instructions of the portable teleporter of this machine were readable in the strange notes you found!")
         player:setStorageValue(Storage.LiquidBlackQuest.Visitor, 3)
     else
         player:sendTextMessage(MESSAGE_EVENT_ADVANCE, "Empty.")

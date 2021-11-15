@@ -148,8 +148,7 @@ function Player:onLook(thing, position, distance)
 				local duration = thing:getImbuementDuration(slot)
 				if duration > 0 then
 					local imbue = thing:getImbuement(slot)
-					imbuingSlots = string.format("%s%s %s %s",
-						imbuingSlots, imbue:getBase().name, imbue:getName(), getTime(duration))
+					imbuingSlots = string.format("%s%s %s", imbuingSlots, imbue:getBase().name, imbue:getName())
 				else
 					imbuingSlots = string.format("%sEmpty Slot", imbuingSlots)
 				end
