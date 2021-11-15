@@ -6539,7 +6539,7 @@ void Game::checkImbuements()
 			}
 
 			int32_t duration = info >> 8;
-			int32_t newDuration = std::max(0, (duration - (EVENT_IMBUEMENTINTERVAL * EVENT_IMBUEMENT_BUCKETS) / 690));
+			int32_t newDuration = duration;
 			if (newDuration > 0) {
 				hasImbue = true;
 			}
