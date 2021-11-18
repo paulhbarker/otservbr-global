@@ -1,7 +1,7 @@
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, variant)
-	return creature:conjureItem(0, 7363, 10, CONST_ME_MAGIC_BLUE)
+	return creature:conjureItem(0, 7363, 40, CONST_ME_MAGIC_BLUE)
 end
 spell:name("Conjure Piercing Bolt")
 spell:words("exevo con grav")

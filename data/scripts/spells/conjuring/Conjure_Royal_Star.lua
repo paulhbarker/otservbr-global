@@ -1,7 +1,7 @@
 local spell = Spell("instant")
 
 function spell.onCastSpell(creature, variant)
-	return creature:conjureItem(0, 29059, 30, CONST_ME_MAGIC_BLUE)
+	return creature:conjureItem(0, 29059, 120, CONST_ME_MAGIC_BLUE)
 end
 
 spell:group("support")
@@ -12,7 +12,7 @@ spell:cooldown(2 * 1000)
 spell:groupCooldown(2 * 1000)
 spell:level(150)
 spell:mana(1000)
-spell:soul(0)
+spell:soul(4)
 spell:isPremium(true)
 spell:isSelfTarget(true)
 spell:isAggressive(false)
