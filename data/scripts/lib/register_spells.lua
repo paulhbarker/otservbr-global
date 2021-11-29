@@ -497,11 +497,6 @@ AREA_SHORTWAVE3 = {
             return false
         end
     
-        if item:hasAttribute(ITEM_ATTRIBUTE_DURATION) then
-            item:decay()
-        end
-    
         self:getPosition():sendMagicEffect(item:getType():isRune() and CONST_ME_MAGIC_RED or effect)
         return true
     end
-    
