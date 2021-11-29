@@ -46,7 +46,7 @@ local function creatureSayCallback(cid, type, msg)
 			npcHandler.topic[cid] = 1
 
 		elseif questProgress == 1 then
-			if player:getStorageValue(Storage.QuestChests.WhisperMoss) == 1 then
+			if player:getItemCount(4838) > 0 then
 				npcHandler:say('Oh, you brought me whisper moss? Good hairless ape you are! Can me take it?', cid)
 				npcHandler.topic[cid] = 3
 			else
@@ -176,8 +176,7 @@ local function creatureSayCallback(cid, type, msg)
 		end
 
 	elseif msgcontains(msg, 'background') then
-		if questProgress == 1
-				and player:getStorageValue(Storage.QuestChests.WhisperMoss) ~= 1 then
+		if questProgress == 1 and player:getItemCount(4838) < 1 then
 			npcHandler:say({
 				'So listen, little ape was struck by plague. Hairycles not does know what plague it is. That is strange. Hairycles should know. But Hairycles learnt lots and lots ...',
 				'Me sure to make cure so strong to drive away all plague. But to create great cure me need powerful components ...',
